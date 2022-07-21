@@ -1,0 +1,15 @@
+#!/usr/bin/env ruby
+
+require "yarn/audit/wrap.rb"
+require "pry"
+require "debug"
+
+begin
+  main = Yarn::Audit::Wrap::Main.new(ARGV)
+rescue Yarn::Audit::Wrap::ExitEarlyError
+  exit 0
+end
+
+rv = main.run
+exit rv
+

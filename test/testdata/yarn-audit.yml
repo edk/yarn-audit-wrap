@@ -1,0 +1,4 @@
+---
+:ignore:
+- github_advisory_id: GHSA-cj88-88mr-972w
+  :until: 2022-07-19
