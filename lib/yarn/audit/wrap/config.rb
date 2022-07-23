@@ -18,7 +18,11 @@ module Yarn
         end
 
         def ignores
-          @config[:ignore]
+          if @config && @config.size > 0
+            @config[:ignore]
+          else
+            []
+          end
         end
       end
     end # Wrap
