@@ -42,7 +42,7 @@ module Yarn
         end
 
         def get_summary
-          @output.detect { |item| item["type"] == "auditSummary" }
+          @output.detect { |item| item["type"] == "auditSummary" } || {}
         end
 
         def print_summary
