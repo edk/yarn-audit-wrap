@@ -47,7 +47,7 @@ module Yarn
 
         def print_summary
           puts "\nOriginal Yarn Audit:"
-          s = get_summary["data"]
+          s = get_summary["data"] || {}
           s.each { |k, v| puts "#{k.to_s.rjust(23)}: #{v.inspect}" }
 
           puts "\nSkipped vulnerabilities:"
