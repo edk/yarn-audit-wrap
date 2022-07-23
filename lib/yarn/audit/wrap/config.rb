@@ -13,7 +13,7 @@ module Yarn
           @config = if File.exist?(audit_config)
             YAML.safe_load(File.read(audit_config), permitted_classes: [Symbol, Date])
           else
-            []
+            {}
           end
         end
 
