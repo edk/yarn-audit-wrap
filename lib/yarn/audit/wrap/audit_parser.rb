@@ -18,8 +18,12 @@ module Yarn
 
         def parse_json_audit
           audit_json = @opts[:audit_json]
-          @output = File.readlines(audit_json).map do |line|
-            JSON.parse(line)
+          @output = if File.exist?(audit_json)
+            File.readlines(audit_json).map do |line|
+              JSON.parse(line)
+            end
+          else
+            []
           end
         end
 
