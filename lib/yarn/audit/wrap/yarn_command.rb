@@ -1,3 +1,5 @@
+require "fileutils"
+
 module Yarn
   module Audit
     module Wrap
@@ -7,7 +9,9 @@ module Yarn
         end
 
         def run
-          outfile = Shellwords.escape(@opts[:audit_json].to_s)
+          filepath = @opts[:audit_json].to_s
+          FileUtils.mkdir_p File.dirname(filepath)
+          outfile = Shellwords.escape(filepath)
           system("yarn audit --json > #{outfile}")
         end
       end
