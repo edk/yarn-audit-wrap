@@ -55,6 +55,7 @@ module Yarn
           # generates a tmp/yarn-audit.json by default.  Change @opts to rename/move output file.
           cmd = YarnCommand.new(opts: @opts) unless @opts[:skip_audit_gen]
           raise YarnAuditRuntimeError if !cmd
+          cmd.run
 
           # parse output of yarn audit and store
           audit_output = AuditParser.new(opts: @opts)
