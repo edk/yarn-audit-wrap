@@ -12,4 +12,12 @@ class Yarn::Audit::Config < Minitest::Test
   def test_config
     assert(@config.ignores.size == 1)
   end
+
+  def test_missing_config
+    assert_raises(Yarn::Audit::Wrap::FileNotFoundError) do
+      with_captured_stderr {
+        @opts = Yarn::Audit::Wrap::OptParser.new(["--ignorelist=missing-file.yml"])
+      }
+    end
+  end
 end

@@ -15,4 +15,13 @@ class Yarn::Audit::AuditParser < Minitest::Test
     assert(@audit_file.output.size == 3)
     assert(@audit_file.select { true }.send(:size) == 2)
   end
+
+  def test_audit_file_load_missing_file
+    assert_raises(Yarn::Audit::Wrap::FileNotFoundError) do
+      with_captured_stderr {
+        @opts = Yarn::Audit::Wrap::OptParser.new(["--file=missing-file.json"])
+      }
+    end
+    @audit_file = Yarn::Audit::Wrap::AuditParser.new(opts: @opts)
+  end
 end

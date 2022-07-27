@@ -11,6 +11,15 @@ require "minitest/autorun"
 require "pry"
 require "debug"
 
+def with_captured_stderr
+  original_stderr = $stderr # capture previous value of $stderr
+  $stderr = StringIO.new # assign a string buffer to $stderr
+  yield # perform the body of the user code
+  $stderr.string # return the contents of the string buffer
+ensure
+  $stderr = original_stderr # restore $stderr to its previous value
+end
+
 def with_captured_stdout
   original_stdout = $stdout # capture previous value of $stdout
   $stdout = StringIO.new # assign a string buffer to $stdout
