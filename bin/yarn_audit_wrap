@@ -1,8 +1,13 @@
 #!/usr/bin/env ruby
 
 require "yarn/audit/wrap.rb"
-require "pry"
-require "debug"
+
+begin
+  require "pry"
+  require "debug"
+rescue
+  # Do nothing if debugging libs aren't available.
+end
 
 begin
   main = Yarn::Audit::Wrap::Main.new(ARGV)
