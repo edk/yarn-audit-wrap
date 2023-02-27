@@ -3,13 +3,6 @@
 require "yarn/audit/wrap.rb"
 
 begin
-  require "pry"
-  require "debug"
-rescue
-  # Do nothing if debugging libs aren't available.
-end
-
-begin
   main = Yarn::Audit::Wrap::Main.new(ARGV)
 rescue Yarn::Audit::Wrap::ExitEarlyError
   exit 0
